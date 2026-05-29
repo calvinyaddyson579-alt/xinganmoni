@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时代峰峻心肝匹配器</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f5;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
+</style>
+</head>
+<body>
+<div id="app" style="background:#fff;padding:25px;border-radius:16px;color:#333;min-height:500px;box-shadow:0 2px 12px rgba(0,0,0,0.08);max-width:500px;width:100%"></div>
+<script>
+const D=document.getElementById('app');
+const A=[
+{n:"王俊凯",g:1,b:"1999-09-21",t:{m:9,ge:8,am:9,cr:7,pl:6,qu:6,le:9,pi:5,ad:6},d:"成熟稳重，队长担当",ic:"🎤",sk:["vocal"]},
+{n:"王源",g:1,b:"2000-11-08",t:{m:7,ge:8,am:8,cr:9,pl:7,qu:5,le:6,pi:6,ad:7},d:"音乐才子，浪漫感性",ic:"🎵",sk:["vocal","create"]},
+{n:"易烊千玺",g:1,b:"2000-11-28",t:{m:9,ge:7,am:10,cr:8,pl:4,qu:8,le:8,pi:7,ad:5},d:"实力派，低调内敛",ic:"🎬",sk:["dance"]},
+{n:"马嘉祺",g:2,b:"2002-12-12",t:{m:8,ge:8,am:9,cr:7,pl:6,qu:6,le:9,pi:6,ad:7},d:"队长，实力vocal",ic:"🎯",sk:["vocal"]},
+{n:"丁程鑫",g:2,b:"2002-02-05",t:{m:8,ge:7,am:9,cr:8,pl:7,qu:5,le:8,pi:6,ad:7},d:"主舞担当，全能",ic:"💫",sk:["dance","vocal"]},
+{n:"宋亚轩",g:2,b:"2004-03-04",t:{m:6,ge:9,am:7,cr:8,pl:8,qu:6,le:5,pi:8,ad:9},d:"治愈系，天籁音色",ic:"🌸",sk:["vocal"]},
+{n:"刘耀文",g:2,b:"2005-09-23",t:{m:5,ge:7,am:8,cr:6,pl:9,qu:3,le:7,pi:7,ad:8},d:"活力满满，帅气",ic:"⚡",sk:["dance","rap"]},
+{n:"张真源",g:2,b:"2003-04-03",t:{m:7,ge:8,am:8,cr:6,pl:7,qu:6,le:6,pi:7,ad:7},d:"稳重可靠，运动系",ic:"💪",sk:["vocal"]},
+{n:"严浩翔",g:2,b:"2004-08-06",t:{m:7,ge:6,am:9,cr:8,pl:7,qu:5,le:7,pi:5,ad:6},d:"说唱担当，酷帅",ic:"🔥",sk:["rap","create"]},
+{n:"贺峻霖",g:2,b:"2004-06-15",t:{m:7,ge:8,am:7,cr:7,pl:7,qu:6,le:6,pi:7,ad:8},d:"机智幽默，细心",ic:"😄",sk:["vocal"]},
+{n:"朱志鑫",g:3,b:"2005-11-19",t:{m:7,ge:7,am:9,cr:7,pl:6,qu:6,le:8,pi:6,ad:7},d:"C位，全能担当",ic:"⭐",sk:["vocal","dance","rap"]},
+{n:"张泽禹",g:3,b:"2007-04-30",t:{m:6,ge:8,am:7,cr:8,pl:7,qu:6,le:5,pi:7,ad:8},d:"温柔vocal，细腻",ic:"🎤",sk:["vocal","create"]},
+{n:"苏新皓",g:3,b:"2005-01-12",t:{m:7,ge:7,am:10,cr:8,pl:6,qu:5,le:7,pi:8,ad:7},d:"努力王，自律",ic:"🎯",sk:["vocal","dance"]},
+{n:"张极",g:3,b:"2006-02-14",t:{m:6,ge:8,am:8,cr:7,pl:7,qu:6,le:5,pi:7,ad:8},d:"温柔浪漫，vocal",ic:"💝",sk:["vocal"]},
+{n:"左航",g:3,b:"2006-05-22",t:{m:6,ge:7,am:8,cr:7,pl:8,qu:4,le:6,pi:6,ad:8},d:"活力说唱，有趣",ic:"😎",sk:["rap","dance"]},
+{n:"童禹坤",g:3,b:"2006-07-07",t:{m:6,ge:7,am:7,cr:7,pl:7,qu:6,le:5,pi:7,ad:7},d:"稳重vocal，真诚",ic:"🎵",sk:["vocal"]},
+{n:"邓佳鑫",g:3,b:"2006-07-23",t:{m:6,ge:7,am:7,cr:7,pl:6,qu:6,le:5,pi:7,ad:7},d:"vocal担当，努力",ic:"🎶",sk:["vocal"]},
+{n:"穆祉丞",g:3,b:"2007-01-22",t:{m:5,ge:8,am:7,cr:7,pl:8,qu:5,le:4,pi:9,ad:9},d:"治愈系，可爱",ic:"🌸",sk:["vocal"]},
+{n:"黄朔",g:3,b:"2008-04-08",t:{m:5,ge:8,am:8,cr:8,pl:8,qu:5,le:6,pi:8,ad:9},d:"有才华，可爱",ic:"🎨",sk:["vocal","create"]},
+{n:"张子墨",g:3,b:"2008-08-12",t:{m:5,ge:7,am:7,cr:8,pl:8,qu:5,le:4,pi:8,ad:8},d:"音乐才华，可爱",ic:"🎹",sk:["vocal","create"]},
+{n:"张峻豪",g:3,b:"2007-05-26",t:{m:6,ge:7,am:9,cr:7,pl:7,qu:5,le:6,pi:6,ad:7},d:"solo出道，努力",ic:"🎭",sk:["vocal","dance"]},
+{n:"余宇涵",g:3,b:"2006-11-14",t:{m:6,ge:7,am:8,cr:6,pl:8,qu:4,le:5,pi:8,ad:9},d:"可爱活力，真诚",ic:"🌟",sk:["dance"]},
+{n:"官俊臣",g:4,b:"2007-07-04",t:{m:6,ge:7,am:8,cr:7,pl:7,qu:5,le:7,pi:6,ad:7},d:"四代元老，领袖气质",ic:"🌈",sk:["vocal"],info:["四代第一批公开成员，资历最深","国家一级游泳运动员，体育特长生","性格稳重有担当，有队长潜质","vocal实力扎实，经验丰富"]},
+{n:"张桂源",g:4,b:"2009-05-11",t:{m:5,ge:7,am:8,cr:7,pl:8,qu:4,le:6,pi:7,ad:8},d:"篮球少年，阳光开朗",ic:"🏀",sk:["dance","rap"],info:["热爱篮球，运动细胞发达","性格阳光开朗，笑起来很暖","舞蹈实力强，节奏感好","少年感十足，成长型选手"]},
+{n:"张函瑞",g:4,b:"2009-10-18",t:{m:5,ge:8,am:8,cr:8,pl:7,qu:6,le:5,pi:8,ad:9},d:"高音小王子，音域宽广",ic:"🎤",sk:["vocal"],info:["高音实力出众，音域宽广","音色清亮有穿透力","性格安静温柔，内向敏感","外形清秀，气质文艺"]},
+{n:"王橹杰",g:4,b:"2010-01-08",t:{m:4,ge:8,am:8,cr:7,pl:8,qu:5,le:5,pi:9,ad:10},d:"四代人气王，萌系担当",ic:"✨",sk:["vocal"],info:["四代人气top，高会粉丝数断层第一","性格温柔细腻，治愈系","外形软萌可爱，笑眼杀手","vocal实力扎实，音色甜美"]},
+{n:"左奇函",g:4,b:"2010-03-18",t:{m:4,ge:7,am:7,cr:7,pl:9,qu:4,le:4,pi:8,ad:9},d:"搞怪担当，综艺感强",ic:"🎈",sk:["dance"],info:["性格活泼搞怪，是气氛组担当","综艺感强，搞笑天赋拉满","外形可爱有辨识度","舞蹈实力扎实，表现力强"]},
+{n:"杨博文",g:4,b:"2010-05-12",t:{m:4,ge:7,am:8,cr:7,pl:8,qu:4,le:5,pi:8,ad:8},d:"全能型选手，自律努力",ic:"🎯",sk:["dance","rap"],info:["性格沉稳自律，努力上进","唱跳rap全能，综合实力强","外形阳光健康，正太感","对自己要求高，不断进步"]},
+{n:"杨涵博",g:4,b:"2010-06-08",t:{m:4,ge:8,am:7,cr:7,pl:8,qu:5,le:4,pi:9,ad:9},d:"温柔小天使，共情力强",ic:"🌸",sk:["vocal"],info:["性格温柔敏感，共情能力超强","很容易哭，情绪外露","外形清秀可爱，气质柔软","vocal实力扎实，音色温柔"]},
+{n:"张奕然",g:4,b:"2010-07-15",t:{m:4,ge:7,am:7,cr:7,pl:9,qu:4,le:4,pi:8,ad:9},d:"活力小太阳，搞笑担当",ic:"🌟",sk:["dance"],info:["性格超级活泼，是四代的开心果","搞笑天赋强，总能逗笑别人","外形可爱有辨识度","舞蹈实力强，舞台表现力佳"]},
+{n:"陈奕恒",g:4,b:"2010-08-20",t:{m:4,ge:7,am:8,cr:8,pl:7,qu:5,le:5,pi:7,ad:8},d:"创作才子，音乐天赋高",ic:"🎨",sk:["vocal","create"],info:["音乐才华出众，创作能力强","能写歌能编曲，全能型","性格沉稳有担当，努力上进","外形清秀，气质文艺"]},
+{n:"陈浚铭",g:4,b:"2012-05-17",t:{m:3,ge:8,am:7,cr:7,pl:9,qu:4,le:4,pi:10,ad:10},d:"四代团宠，萌系天花板",ic:"🎀",sk:["dance","rap"],info:["四代年纪最小，是全团的团宠","外形软萌可爱，是萌系天花板","性格活泼可爱，让人想保护","舞蹈rap实力不错，有潜力"]},
+{n:"魏子宸",g:4,b:"2011-12-19",t:{m:3,ge:8,am:7,cr:7,pl:9,qu:5,le:4,pi:10,ad:10},d:"萌系担当，可爱温柔",ic:"🎀",sk:["vocal"],info:["外形软萌可爱，萌系担当","性格可爱温柔，让人想rua","vocal实力不错，有潜力","气质柔软，治愈系"]},
+{n:"陈思罕",g:4,b:"2011-03-25",t:{m:3,ge:7,am:7,cr:8,pl:9,qu:4,le:4,pi:8,ad:9},d:"个性担当，风格独特",ic:"🎭",sk:["dance","rap"],info:["性格有个性，不走寻常路","创作才华出众，有自己的想法","外形有辨识度，气质独特","舞蹈rap实力强，风格鲜明"]},
+{n:"聂玮辰",g:4,b:"2011-05-08",t:{m:3,ge:8,am:7,cr:7,pl:9,qu:5,le:4,pi:9,ad:9},d:"开朗活泼，阳光少年",ic:"💫",sk:["vocal"],info:["性格开朗活泼，是开心果","笑起来很阳光，很有感染力","外形清秀可爱，气质温暖","vocal实力扎实，音色甜美"]},
+{n:"李煜东",g:4,b:"2012-03-15",t:{m:3,ge:8,am:7,cr:7,pl:8,qu:5,le:4,pi:10,ad:10},d:"新晋萌物，潜力股",ic:"⭐",sk:["vocal"],info:["2024年11月新加入四代","年纪小但很努力","外形软萌可爱，萌系担当","性格可爱温柔，有潜力"]}
+];
+const Q=[
+{id:1,tx:"你是哪种类型的粉丝？【单选】",ty:"s",op:[{t:"💕 女友粉",fan:"gf"},{t:"🤱 妈粉",fan:"mom"},{t:"🤖 一体机",fan:"all"},{t:"💅 嬷嬷",fan:"amo"},{t:"👑 公公",fan:"gong"},{t:"👼 姐姐粉/哥哥粉",fan:"sis"}]},
+{id:2,tx:"看舞台时，你更容易被他什么瞬间吸引？【单选】",ty:"s",op:[{t:"笑起来的样子",s:{ad:2,ge:1}},{t:"认真努力的样子",s:{am:2,le:1}},{t:"委屈/受伤的样子",s:{pi:2,ad:1}},{t:"专注表演的样子",s:{m:2,cr:1}}]},
+{id:3,tx:"你更偏好他哪种性格？【单选】",ty:"s",op:[{t:"温柔细腻型",s:{ge:3,pl:1}},{t:"活泼开朗型",s:{pl:3,ad:1}},{t:"沉稳内敛型",s:{m:3,qu:1}},{t:"努力进取型",s:{am:3,le:1}}]},
+{id:4,tx:"他的哪些小特点你反而觉得很可爱？【多选】",ty:"m",op:[{t:"偶尔幼稚孩子气",s:{pl:2,ad:1}},{t:"呆萌反应慢",s:{ad:2,pi:1}},{t:"不善言辞但真诚",s:{qu:2,m:1}},{t:"小迷糊需要照顾",s:{pi:2,ge:1}}]},
+{id:5,tx:"他发微博/高会/抖音时，你更期待什么？【多选】",ty:"m",op:[{t:"自拍/日常vlog",s:{ad:1,pl:1}},{t:"工作分享",s:{am:1,cr:1}},{t:"感性文字",s:{ge:1,qu:1}},{t:"搞笑/吐槽",s:{pl:1,ge:1}}]},
+{id:6,tx:"他的营业风格，你更喜欢？【单选】",ty:"s",op:[{t:"经常营业",s:{pl:2,ge:1}},{t:"偶尔营业",s:{cr:1,ad:1}},{t:"真诚分享",s:{ge:1,m:1}},{t:"用作品说话",s:{am:2,cr:1}}]},
+{id:7,tx:"你更偏好他擅长哪方面？【多选】",ty:"m",op:[{t:"唱歌/vocal",s:{cr:1,ge:1},sk:"vocal"},{t:"舞蹈",s:{pl:1,am:1},sk:"dance"},{t:"乐器/创作",s:{cr:2,qu:1},sk:"create"},{t:"说唱",s:{pl:1,le:1},sk:"rap"}]},
+{id:8,tx:"他的外在气质，你更偏好？【单选】",ty:"s",op:[{t:"清秀少年感",s:{ge:2,ad:1}},{t:"酷帅有型",s:{le:2,am:1}},{t:"精致贵气",s:{m:2,qu:1}},{t:"可爱软萌",s:{ad:2,pi:1}}]},
+{id:9,tx:"你希望他在团队中是什么角色？【单选】",ty:"s",op:[{t:"队长/领导者",s:{le:3,am:1}},{t:"核心成员",s:{am:2,cr:1}},{t:"气氛组",s:{pl:3,ad:1}},{t:"安静型",s:{qu:2,m:1}}]},
+{id:10,tx:"他和队友相处时，哪种状态更吸引你？【多选】",ty:"m",op:[{t:"照顾队友",s:{le:2,m:1}},{t:"被照顾，团宠",s:{pi:2,ad:1}},{t:"打闹互怼",s:{pl:2,cr:1}},{t:"默默配合",s:{m:1,qu:1}}]},
+{id:11,tx:"他的成长轨迹，哪种更打动你？【单选】",ty:"s",op:[{t:"从默默无闻到被认可",s:{am:2,pi:1}},{t:"出道即巅峰",s:{le:2,m:1}},{t:"努力进步后来居上",s:{am:2,m:1}},{t:"天赋型选手",s:{cr:2,le:1}}]},
+{id:12,tx:"他的哪种经历更容易让你心疼？【多选】",ty:"m",op:[{t:"默默付出被忽视",s:{pi:2,qu:1}},{t:"努力很久才被认可",s:{am:2,pi:1}},{t:"承受舆论压力",s:{m:2,le:1}},{t:"生病/受伤坚持工作",s:{pi:2,am:1}}]},
+{id:13,tx:"他在公开场合的表现风格？【单选】",ty:"s",op:[{t:"外向开朗",s:{pl:2,le:1}},{t:"温和友善",s:{ge:2,m:1}},{t:"低调内敛",s:{qu:3,cr:1}},{t:"有个性",s:{le:2,cr:1}}]},
+{id:14,tx:"以下特质，哪些会特别吸引你？【多选】",ty:"m",op:[{t:"有担当责任感",s:{le:2,m:1}},{t:"温柔细腻",s:{ge:2,pl:1}},{t:"有才华创造力",s:{cr:2,am:1}},{t:"有趣幽默",s:{pl:2,ad:1}},{t:"让人心疼",s:{pi:2,ad:1}},{t:"可爱软萌",s:{ad:2,pi:1}}]},
+{id:15,tx:"如果要在舞台上pick一个人，你更看重？【多选】",ty:"m",op:[{t:"vocal实力",s:{cr:2,ge:1},sk:"vocal"},{t:"舞蹈实力",s:{pl:2,am:1},sk:"dance"},{t:"颜值气质",s:{ad:2,ge:1}},{t:"整体魅力",s:{le:1,am:1,cr:1}}]}
+];
+let S={sp:0,bd:"",an:{},fan:null,us:[]};
+function R(){
+if(S.sp===0){D.innerHTML='<div style="text-align:center;padding:50px 20px"><div style="font-size:50px;margin-bottom:15px">💖</div><h1 style="font-size:24px;margin-bottom:8px;color:#333">时代峰峻心肝匹配器</h1><p style="color:#666;margin-bottom:20px;font-size:14px">帮助你找到最适合追的明星</p><div style="margin-top:20px"><label style="display:block;margin-bottom:8px;font-size:13px;color:#666">请输入你的出生日期</label><input type="date" id="b" style="padding:10px 16px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#333;font-size:15px;width:160px"></div><button onclick="ST()" style="margin-top:25px;padding:13px 40px;border-radius:25px;border:none;background:linear-gradient(90deg,#ff6b6b,#feca57);color:#fff;font-size:16px;font-weight:600;cursor:pointer">开始匹配</button></div>';}
+else if(S.sp<=Q.length){const q=Q[S.sp-1],pr=(S.sp/Q.length*100).toFixed(0);let h='<div style="padding:15px"><div style="margin-bottom:20px"><div style="display:flex;justify-content:space-between;font-size:11px;color:#999;margin-bottom:6px"><span>第 '+S.sp+'/'+Q.length+' 题</span></div><div style="background:#f0f0f0;border-radius:8px;height:5px"><div style="background:linear-gradient(90deg,#ff6b6b,#feca57);height:100%;width:'+pr+'%;border-radius:8px"></div></div></div><h2 style="font-size:15px;margin-bottom:18px;line-height:1.5;color:#333">'+q.tx+'</h2><div style="max-width:380px;margin:0 auto">';
+q.op.forEach((o,i)=>{const sel=S.an[q.id]?.includes(i);const bg=sel?'background:rgba(255,107,107,0.15);border-color:#ff6b6b':'background:#f8f8f8;border-color:#eee';h+='<div onclick="SL('+q.id+','+i+',\''+q.ty+'\')" style="padding:12px 14px;margin-bottom:10px;border-radius:10px;border:2px solid transparent;'+bg+';cursor:pointer;font-size:14px;color:#333">'+o.t+'</div>';});
+h+='</div><div style="text-align:center;margin-top:22px">';
+if(S.sp>1)h+='<button onclick="PR()" style="padding:10px 22px;border-radius:20px;border:1px solid #ddd;background:#fff;color:#666;margin-right:8px;cursor:pointer;font-size:13px">上一题</button>';
+if(S.an[q.id]?.length>0)h+='<button onclick="NX()" style="padding:10px 26px;border-radius:20px;border:none;background:linear-gradient(90deg,#ff6b6b,#feca57);color:#fff;cursor:pointer;font-size:13px;font-weight:600">'+(S.sp===Q.length?'查看结果':'下一题')+'</button>';
+h+='</div></div>';D.innerHTML=h;}
+else{const r=CL();let h='<div style="padding:15px"><h2 style="text-align:center;font-size:20px;margin-bottom:20px;color:#333">你的五大心肝 💝</h2>';
+r.forEach((x,i)=>{const sc=i===0?98:i===1?91:i===2?84:i===3?77:70;h+='<div style="background:#f8f8f8;border-radius:12px;padding:14px;margin-bottom:12px"><div style="display:flex;align-items:center;margin-bottom:8px"><span style="font-size:26px;margin-right:10px">'+x.ic+'</span><div style="flex:1"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:600;color:#333">'+(i+1)+'. '+x.n+'</span><span style="font-size:11px;color:#999">'+x.g+'代</span></div><p style="font-size:12px;color:#666;margin-top:2px">'+x.d+'</p></div></div><div style="background:#fff;border-radius:8px;padding:10px;margin-top:10px"><p style="font-size:11px;color:#666;line-height:1.7">• '+x.i.join('<br>• ')+'</p></div><div style="background:#e0e0e0;border-radius:6px;height:5px;margin-top:10px"><div style="background:linear-gradient(90deg,#ff6b6b,#feca57);height:100%;width:'+sc+'%;border-radius:6px"></div></div><div style="text-align:right;font-size:11px;margin-top:4px;color:#999">匹配度 '+sc+'%</div></div>';});
+h+='<div style="text-align:center;margin-top:22px"><button onclick="RS()" style="padding:11px 32px;border-radius:20px;border:1px solid #ddd;background:#fff;color:#666;cursor:pointer;font-size:13px">重新测试</button></div></div>';D.innerHTML=h;}}
+window.ST=()=>{const v=document.getElementById('b').value;if(!v){alert('请选择出生日期');return}S.bd=v;S.sp=1;R();};
+window.SL=(id,i,ty)=>{if(!S.an[id])S.an[id]=[];if(ty==='s'){S.an[id]=[i];if(id===1)S.fan=Q[0].op[i].fan;}else{const ix=S.an[id].indexOf(i);if(ix>-1){S.an[id].splice(ix,1);if(Q.find(q=>q.id===id)?.op[i]?.sk)S.us=S.us.filter(s=>s!==Q.find(q=>q.id===id).op[i].sk);}else{S.an[id].push(i);if(Q.find(q=>q.id===id)?.op[i]?.sk)S.us.push(Q.find(q=>q.id===id).op[i].sk);}}R();};
+window.NX=()=>{S.sp++;R();};
+window.PR=()=>{S.sp--;R();};
+window.RS=()=>{S={sp:0,bd:"",an:{},fan:null,us:[]};R();};
+function CL(){const bd=new Date(S.bd),ua=new Date().getFullYear()-bd.getFullYear();return A.map(a=>{let sc=0,ts={},mi=a.info||["性格特点: "+a.d,"技能: "+a.sk.join("、"),"年龄: "+(new Date().getFullYear()-new Date(a.b).getFullYear())+"岁"];const aa=new Date().getFullYear()-new Date(a.b).getFullYear(),ad=ua-aa;if(S.fan==='gf'){if(Math.abs(ad)<=2)sc+=12;else if(ad>=-5&&ad<-2)sc+=8;}else if(S.fan==='mom'||S.fan==='sis'){if(ad>=5)sc+=15;else if(ad>=3)sc+=12;else if(ad>=0)sc+=6;}else if(S.fan==='all'){if(Math.abs(ad)<=3)sc+=10;else if(ad>=3)sc+=8;}else if(S.fan==='amo'){if(ad>=3)sc+=12;else if(Math.abs(ad)<=2)sc+=8;}else if(S.fan==='gong'){if(ad>=5)sc+=15;else if(ad>=3)sc+=12;}
+Q.forEach(q=>{if(!S.an[q.id])return;S.an[q.id].forEach(ix=>{const o=q.op[ix];if(o.s)Object.keys(o.s).forEach(k=>{ts[k]=(ts[k]||0)+o.s[k];});});});
+Object.keys(ts).forEach(k=>{sc+=Math.min(a.t[k]||0,ts[k])*3;});
+let sm=0;S.us.forEach(us=>{if(a.sk.includes(us))sm+=25;});sc+=sm;
+if(S.us.length>0){const ms=S.us.filter(us=>a.sk.includes(us));if(ms.length>0){const sn={vocal:"擅长vocal",dance:"擅长舞蹈",rap:"擅长说唱",create:"擅长创作"};mi=["他"+ms.map(s=>sn[s]).join("、"),...mi.slice(0,3)];}}
+return{...a,score:sc,i:mi};}).sort((a,b)=>b.score-a.score).slice(0,5);}
+R();
+</script>
+</body>
+</html>
